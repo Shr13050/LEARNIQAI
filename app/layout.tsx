@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import Provider from "@/app/Provider"
+import Provider from "@/components/Provider"
 import { Toaster } from "sonner";
 // import LoadScript from "@/components/LoadScript";
 import { VoiceProvider } from '@/components/VoiceContext'
