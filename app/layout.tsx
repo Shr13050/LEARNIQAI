@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import Provider from "./provider"
+import Provider from "@/app/Provider"
 import { Toaster } from "sonner";
 // import LoadScript from "@/components/LoadScript";
 import { VoiceProvider } from '@/components/VoiceContext'
