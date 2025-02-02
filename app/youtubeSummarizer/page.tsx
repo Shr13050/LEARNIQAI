@@ -1816,18 +1816,7 @@ const YouTubeSummaryPage = () => {
       Transcript for analysis:
       ${transcriptText}`;
 
-    //   const response = await chatSession.sendMessage(prompt);
-    //   const summaryText = await response.response.text();
-      
-    //   try {
-    //     return JSON.parse(summaryText) as VideoSummary;
-    //   } catch (parseError) {
-    //     console.error('Error parsing summary JSON:', parseError);
-    //     throw new Error('Failed to parse summary response');
-    //   }
-    // } catch (error) {
-    //   const errorMessage = error instanceof Error ? error.message : 'Failed to generate summary';
-    //   throw new Error(errorMessage);
+    
     const response = await chatSession.sendMessage(prompt);
     const summaryText = await response.response.text();
     
@@ -1874,6 +1863,9 @@ const YouTubeSummaryPage = () => {
     setChatMessage('');
   };
 
+
+
+  //ye best hai
   const handleSubmit = async () => {
     try {
       setLoading(true);
@@ -1904,6 +1896,8 @@ const YouTubeSummaryPage = () => {
     }
   };
 
+  
+  
   return (
     <div className="max-w-6xl mx-auto p-8">
       <h1 className="text-4xl font-semibold text-center mb-6">
@@ -1998,10 +1992,7 @@ const YouTubeSummaryPage = () => {
             ))}
           </div>
           <div className="flex gap-2">
-            {/* <input
-              type="text"
-              className="flex-1 p-3 border border-gray-300 rounded-lg"
-              placeholder="Ask a question about the video..." /> */}
+           
 
               <input
                 type="text"
@@ -2026,25 +2017,7 @@ const YouTubeSummaryPage = () => {
           </div>
         )}
   
-        {/* {transcript.length > 0 && (
-          <div className="mt-8">
-            <h2 className="text-2xl font-semibold mb-4">Video Transcript</h2>
-            <div className="bg-gray-50 p-6 rounded-lg max-h-[400px] overflow-y-auto">
-              {transcript.map((item, index) => (
-                <div
-                  key={index}
-                  className="mb-2 p-2 hover:bg-gray-100 rounded cursor-pointer"
-                  onClick={() => handleTimeClick(item.start)}
-                >
-                  <span className="text-blue-500 font-medium mr-2">
-                    {new Date(item.start * 1000).toISOString().substr(11, 8)}
-                  </span>
-                  {item.text}
-                </div>
-              ))}
-            </div>
-          </div>
-        )} */}
+        
       </div>
     );
   };

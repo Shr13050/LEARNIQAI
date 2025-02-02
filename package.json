@@ -42,6 +42,7 @@
     "drizzle-orm": "^0.38.3",
     "emoji-js": "^3.8.1",
     "formidable": "^3.5.2",
+    "googleapis": "^144.0.0",
     "html2pdf": "^0.0.11",
     "jspdf": "^2.5.2",
     "lucide-react": "^0.469.0",
