@@ -48,13 +48,17 @@ Helps students understand complex codebases and improve their contributions.
 
 
 ## 🏗️ Tech Stack
-**Category	                Technologies Used**
 
-Frontend	                Next.js, Tailwind CSS, TypeScript
-AI Integration	          Langchain, Gemini AI
-Database & Storage       	Neon, Convex, Drizzle
-Authentication          	Clerk
-Web Loaders	              Langchain Web Loaders
+
+**● Frontend**-Next.js, Tailwind CSS, TypeScript
+
+**● AI Integration**-Langchain, Gemini AI
+
+**● Database & Storage**-Neon, Convex, Drizzle
+
+**● Authentication**-Clerk
+
+**● Web Loaders**-Langchain Web Loaders
 
 
 ## 🎯 How LearniQAI Solves the Problem
@@ -115,7 +119,7 @@ Open the .env.local file in any text editor and add the following environment va
 
 **Gemini API Key:** Register at **Google AI Studio**, create an API key, and add it here.
 
-**Drizzle DB URL:** Set up a database on Neon.tech or another Drizzle-compatible service and copy the connection URL.
+**Drizzle DB URL:** Set up a database on **Neon.tech** or another Drizzle-compatible service and copy the connection URL.
 
 **Convex Deployment URL:** Deploy your Convex backend and use the provided deployment URL.
 
