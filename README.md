@@ -86,19 +86,29 @@ Open the .env.local file in any text editor and add the following environment va
 
 
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+
 CLERK_SECRET_KEY=your_clerk_secret_key
+
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=your_clerk_sign_in_url
+
 NEXT_PUBLIC_CLERK_SIGN_UP_URL=your_clerk_sign_up_url
+
 NEXT_PUBLIC_GEMINI_API_KEY_0=your_gemini_api_key_0
+
 NEXT_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
+
 NEXT_PUBLIC_DRIZZLE_DB_URL=your_drizzle_db_url
+
 CONVEX_DEPLOYMENT=your_convex_deployment_url
 
 
 **How to Get These Keys?**
 Clerk Keys: Sign up at Clerk.dev, create an application, and obtain the publishable and secret keys.
+
 Gemini API Key: Register at Google AI Studio, create an API key, and add it here.
+
 Drizzle DB URL: Set up a database on Neon.tech or another Drizzle-compatible service and copy the connection URL.
+
 Convex Deployment URL: Deploy your Convex backend and use the provided deployment URL.
 
 3️⃣ Install Dependencies
@@ -106,17 +116,22 @@ Run the following command to install the required dependencies:
 
 
 npm install --force
+
 The --force flag ensures all dependencies are installed correctly, even if there are minor version mismatches.
 
 4️⃣ Run the Development Server
+
 Once dependencies are installed, start the development server:
 
 
 npm run dev
+
 Your LearniQAI instance will now be running locally on:
+
 👉 http://localhost:3000
 
 🌍 Live Deployment
+
 LearniQAI is deployed and accessible at:
 
 🔗 LearniQAI Live:https://learniqai.vercel.app/
