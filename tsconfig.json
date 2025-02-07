@@ -24,6 +24,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.js", "app/researchPaper/page.tsx", "app/api/extractPdfats/route.js", "utils/schema.jsx", "components/TextToSpeech.jsx", "app/api/proxy/route.js", "app/yt/page.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.js", "app/researchPaper/page.tsx", "app/api/extractPdfats/route.js", "utils/schema.jsx", "components/TextToSpeech.jsx", "app/api/proxy/route.js", "app/yt/page.tsx", "app/api/youtubeTranscript/route.ts"],
   "exclude": ["node_modules"]
 }

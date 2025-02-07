@@ -2023,3 +2023,293 @@ const YouTubeSummaryPage = () => {
   };
   
   export default YouTubeSummaryPage;
+
+
+
+
+
+
+
+
+
+// "use client";
+// import { useState, useEffect, useRef } from 'react';
+// import YouTube from 'react-youtube';
+
+// interface VideoMetadata {
+//   title: string;
+//   description: string;
+//   channelTitle: string;
+//   publishedAt: string;
+// }
+
+// interface TranscriptItem {
+//   text: string;
+//   start: number;
+//   duration: number;
+// }
+
+// interface SummarySection {
+//   title: string;
+//   key_points: string[];
+//   subsections?: Array<{
+//     subtitle: string;
+//     points: string[];
+//   }>;
+// }
+
+// interface VideoSummary {
+//   title: string;
+//   sections: SummarySection[];
+// }
+
+// const SummaryDisplay = ({ summary }: { summary: VideoSummary }) => {
+//   return (
+//     <div className="space-y-8">
+//       <h1 className="text-3xl font-bold text-gray-800">{summary.title}</h1>
+      
+//       <div className="space-y-12">
+//         {summary.sections.map((section, index) => (
+//           <div key={index} className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
+//             <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4">
+//               <h2 className="text-xl font-semibold text-white">
+//                 {section.title}
+//               </h2>
+//             </div>
+            
+//             <div className="p-6 space-y-6">
+//               <div className="space-y-3">
+//                 <h3 className="text-lg font-medium text-gray-700">Key Points</h3>
+//                 <div className="grid gap-3">
+//                   {section.key_points.map((point, pointIndex) => (
+//                     <div
+//                       key={pointIndex}
+//                       className="flex items-start gap-3 bg-blue-50 rounded-lg p-4 transition-all duration-200 hover:bg-blue-100"
+//                     >
+//                       <span className="text-blue-500 mt-1">
+//                         <svg
+//                           className="w-5 h-5"
+//                           fill="none"
+//                           stroke="currentColor"
+//                           viewBox="0 0 24 24"
+//                         >
+//                           <path
+//                             strokeLinecap="round"
+//                             strokeLinejoin="round"
+//                             strokeWidth={2}
+//                             d="M9 5l7 7-7 7"
+//                           />
+//                         </svg>
+//                       </span>
+//                       <p className="text-gray-700">{point}</p>
+//                     </div>
+//                   ))}
+//                 </div>
+//               </div>
+
+//               {section.subsections && section.subsections.length > 0 && (
+//                 <div className="space-y-6 mt-6">
+//                   {section.subsections.map((subsection, subIndex) => (
+//                     <div key={subIndex} className="space-y-3">
+//                       <h4 className="text-lg font-medium text-gray-700 border-l-4 border-blue-500 pl-3">
+//                         {subsection.subtitle}
+//                       </h4>
+//                       <div className="grid gap-2 pl-4">
+//                         {subsection.points.map((point, pointIndex) => (
+//                           <div
+//                             key={pointIndex}
+//                             className="flex items-center gap-2 text-gray-600 hover:text-gray-800"
+//                           >
+//                             <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
+//                             <p>{point}</p>
+//                           </div>
+//                         ))}
+//                       </div>
+//                     </div>
+//                   ))}
+//                 </div>
+//               )}
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// const YouTubeSummaryPage = () => {
+//   const [youtubeLink, setYoutubeLink] = useState<string>('');
+//   const [summary, setSummary] = useState<VideoSummary | null>(null);
+//   const [videoId, setVideoId] = useState<string>('');
+//   const [loading, setLoading] = useState<boolean>(false);
+//   const [error, setError] = useState<string>('');
+//   const [transcript, setTranscript] = useState<TranscriptItem[]>([]);
+//   const playerRef = useRef<any>(null);
+
+//   const extractVideoId = (url: string): string => {
+//     if (!url) return '';
+//     try {
+//       if (url.includes('youtu.be/')) return url.split('youtu.be/')[1].split('?')[0] || '';
+//       if (url.includes('youtube.com/watch')) return new URL(url).searchParams.get('v') || '';
+//       return url;
+//     } catch (error) {
+//       console.error('Error parsing YouTube URL:', error);
+//       return '';
+//     }
+//   };
+
+//   useEffect(() => {
+//     setVideoId(extractVideoId(youtubeLink));
+//   }, [youtubeLink]);
+
+//   const handleLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     setYoutubeLink(e.target.value);
+//   };
+
+//   const fetchTranscriptFromAssemblyAI = async (videoId: string): Promise<TranscriptItem[]> => {
+//     try {
+//       setLoading(true);
+//       const uploadResponse = await fetch('/api/uploadToAssemblyAI', {
+//         method: 'POST',
+//         body: JSON.stringify({ videoId }),
+//         headers: { 'Content-Type': 'application/json' }
+//       });
+
+//       if (!uploadResponse.ok) throw new Error('Failed to upload video to AssemblyAI');
+
+//       const { transcriptId } = await uploadResponse.json();
+
+//       let transcriptResponse;
+//       do {
+//         await new Promise(resolve => setTimeout(resolve, 5000)); // Polling every 5 sec
+//         transcriptResponse = await fetch(`/api/youtubeTranscript?transcriptId=${transcriptId}`);
+//       } while ((await transcriptResponse.json()).status !== "completed");
+
+//       const transcriptData = await transcriptResponse.json();
+//       setTranscript(transcriptData.transcript);
+//       return transcriptData.transcript;
+//     } catch (error) {
+//       setError('Error fetching transcript');
+//       throw new Error('Error fetching transcript');
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const generateSummary = async (transcriptText: string): Promise<VideoSummary> => {
+//     try {
+//       const response = await fetch('/api/summarizeText', {
+//         method: 'POST',
+//         body: JSON.stringify({ text: transcriptText }),
+//         headers: { 'Content-Type': 'application/json' }
+//       });
+
+//       if (!response.ok) throw new Error('Failed to generate summary');
+
+//       return await response.json();
+//     } catch (error) {
+//       throw new Error('Failed to generate summary');
+//     }
+//   };
+
+//   const handleSubmit = async () => {
+//     if (!videoId) return setError('Invalid YouTube link');
+
+//     try {
+//       const transcriptData = await fetchTranscriptFromAssemblyAI(videoId);
+//       const transcriptText = transcriptData.map(item => item.text).join(' ');
+//       const summaryData = await generateSummary(transcriptText);
+//       setSummary(summaryData);
+//     } catch (error) {
+//       setError('Failed to process video');
+//     }
+//   };
+
+//   return (
+//     <div className="max-w-4xl mx-auto p-6">
+//       <h1 className="text-2xl font-semibold mb-4">YouTube Video Summarizer</h1>
+//       <input
+//         type="text"
+//         placeholder="Enter YouTube link"
+//         value={youtubeLink}
+//         onChange={handleLinkChange}
+//         className="w-full p-2 border rounded-lg mb-4"
+//       />
+//       <button
+//         onClick={handleSubmit}
+//         className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+//         disabled={loading}
+//       >
+//         {loading ? "Processing..." : "Summarize"}
+//       </button>
+//       {error && <p className="text-red-500 mt-2">{error}</p>}
+//       {videoId && (
+//         <YouTube videoId={videoId} onReady={(event) => (playerRef.current = event.target)} />
+//       )}
+//       {summary && <SummaryDisplay summary={summary} />}
+//     </div>
+//   );
+// };
+
+// export default YouTubeSummaryPage;
+
+
+// 'use client';
+
+// import { useState } from 'react';
+
+// export default function Page() {
+//     const [videoId, setVideoId] = useState('');
+//     const [transcript, setTranscript] = useState('');
+//     const [loading, setLoading] = useState(false);
+//     const [error, setError] = useState('');
+
+//     const fetchTranscript = async () => {
+//         setLoading(true);
+//         setError('');
+
+//         if (!videoId) {
+//             setError('Please enter a YouTube video ID.');
+//             setLoading(false);
+//             return;
+//         }
+
+//         try {
+//             const response = await fetch(`/api/youtubeTranscript?videoId=${videoId}`);
+
+//             if (!response.ok) {
+//                 throw new Error('Failed to fetch transcript');
+//             }
+
+//             const data = await response.json();
+//             setTranscript(data.transcriptText);
+//         } catch (err) {
+            
+//         } finally {
+//             setLoading(false);
+//         }
+//     };
+
+//     return (
+//         <div>
+//             <h1>YouTube Transcript Extractor</h1>
+//             <input
+//                 type="text"
+//                 placeholder="Enter YouTube Video ID"
+//                 value={videoId}
+//                 onChange={(e) => setVideoId(e.target.value)}
+//             />
+//             <button onClick={fetchTranscript} disabled={loading}>
+//                 {loading ? 'Fetching...' : 'Get Transcript'}
+//             </button>
+
+//             {error && <p style={{ color: 'red' }}>{error}</p>}
+//             {transcript && (
+//                 <div>
+//                     <h2>Transcript</h2>
+//                     <p>{transcript}</p>
+//                 </div>
+//             )}
+//         </div>
+//     );
+// }
