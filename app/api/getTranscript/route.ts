@@ -10,10 +10,9 @@ export async function GET(request: Request) {
             return NextResponse.json({ error: "Missing videoId parameter" }, { status: 400 });
         }
 
-        // const pythonProcess = spawn('python', ['fetch_captions.py', videoId]);
         const pythonProcess = spawn('C:\\Python312\\python.exe', ['fetch_captions.py', videoId]);
 
-        return new Promise((resolve, reject) => {
+        return new Promise<Response>((resolve) => {
             let data = '';
             let errorData = '';
 
