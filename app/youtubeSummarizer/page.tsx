@@ -1773,6 +1773,7 @@ const YouTubeSummaryPage = () => {
       if (!videoId) throw new Error('Invalid YouTube URL');
 
       const response = await fetch(`/api/youtubeTranscript?videoId=${videoId}`);
+      console.log(response);
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || 'Failed to fetch transcript');
