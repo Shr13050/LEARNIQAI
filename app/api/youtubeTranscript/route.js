@@ -100,10 +100,63 @@
 
 
 
+import { NextResponse } from 'next/server';
+import { getSubtitles } from 'youtube-captions-scraper';
+
+export async function GET(request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const videoId = searchParams.get('videoId');
+
+    if (!videoId) {
+      return NextResponse.json(
+        { error: 'Invalid or missing videoId' },
+        { status: 400 }
+      );
+    }
+
+    // Fetch subtitles using youtube-captions-scraper
+    const subtitles = await getSubtitles({
+      videoID: videoId,
+      lang: 'en' // Default language is English
+    });
+    
+
+    // Process transcript to include start time and duration
+    const transcript = subtitles.map(sub => ({
+      text: sub.text,
+      start: sub.start, // Already in seconds
+      duration: sub.dur // Already in seconds
+    }));
+
+    // Generate full transcript text
+    const transcriptText = transcript.map(item => item.text).join(' ');
+
+    return NextResponse.json({
+      transcript,
+      transcriptText,
+      metadata: {
+        totalDuration: transcript.reduce((acc, item) => acc + item.duration, 0),
+        segmentCount: transcript.length
+      }
+    });
+  } catch (error) {
+    console.error('Error extracting transcript:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Error extracting transcript';
+
+    return NextResponse.json(
+      { 
+        error: errorMessage,
+        details: error instanceof Error ? error.stack : undefined
+      },
+      { status: 500 }
+    );
+  }
+}
 
  //correct code 
 
-// // app/api/youtubeTranscript/route.ts
+// app/api/youtubeTranscript/route.ts
 // import { NextResponse } from 'next/server';
 // import { YoutubeTranscript } from 'youtube-transcript';
 
@@ -164,78 +217,68 @@
 
 
 
-// For this example you need the node-fetch npm package: `npm i node-fetch`
-import { NextResponse } from 'next/server';
-import { YoutubeTranscript } from 'youtube-transcript';
-import nodeFetch from 'node-fetch';
+// // For this example you need the node-fetch npm package: `npm i node-fetch`
+// export const runtime = 'nodejs';
 
-const SCRAPER_API_KEY = 'eeba84012c4e904188f66c8aa863bc13';
+// import { NextResponse } from 'next/server';
+// import puppeteer from 'puppeteer';
 
-function scraperFetch(input, init) {
-  // Determine the URL from the input
-  let url;
-  if (typeof input === 'string') {
-    url = input;
-  } else if (input instanceof URL) {
-    url = input.toString();
-  } else {
-    // input is a Request object
-    url = input.url;
-  }
-  // Encode the URL and construct the proxy URL with your ScraperAPI key
-  const encodedUrl = encodeURIComponent(url);
-  const proxyUrl = `http://api.scraperapi.com/?api_key=${SCRAPER_API_KEY}&url=${encodedUrl}`;
-  return nodeFetch(proxyUrl, init);
-}
+// export async function GET(request) {
+//   const { searchParams } = new URL(request.url);
+//   const videoId = searchParams.get('videoId');
+//   if (!videoId) {
+//     return NextResponse.json({ error: 'Invalid or missing videoId' }, { status: 400 });
+//   }
+//   try {
+//     // Launch Puppeteer with no-sandbox for deployment environments like Vercel
+//     const browser = await puppeteer.launch({
+//       args: ['--no-sandbox', '--disable-setuid-sandbox'],
+//     });
+//     const page = await browser.newPage();
+    
+//     const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+//     await page.goto(videoUrl, { waitUntil: 'networkidle2', timeout: 30000 });
+    
+//     // Depending on YouTube's UI, you may need to click the "..." button to open the transcript.
+//     // For example:
+//     // await page.click('button[aria-label="More actions"]');
+//     // await page.waitForSelector('ytd-menu-service-item-renderer');
+//     // await page.click('ytd-menu-service-item-renderer:nth-child(3)'); // Assuming transcript is the 3rd option
 
-export async function GET(request) {
-  try {
-    // Override the global fetch function used by youtube-transcript
-    globalThis.fetch = scraperFetch;
-
-    const { searchParams } = new URL(request.url);
-    const videoId = searchParams.get('videoId');
-
-    if (!videoId) {
-      return NextResponse.json(
-        { error: 'Invalid or missing videoId' },
-        { status: 400 }
-      );
-    }
-
-    // Fetch the transcript (this will use our custom fetch via ScraperAPI)
-    const rawTranscript = await YoutubeTranscript.fetchTranscript(videoId);
-
-    // Process transcript: convert offset and duration from milliseconds to seconds
-    const transcript = rawTranscript.map(item => ({
-      text: item.text,
-      start: item.offset / 1000,
-      duration: item.duration / 1000,
-    }));
-
-    // Combine transcript text for further processing if needed
-    const transcriptText = transcript.map(item => item.text).join(' ');
-
-    return NextResponse.json({
-      transcript,
-      transcriptText,
-      metadata: {
-        totalDuration: transcript.reduce((acc, item) => acc + item.duration, 0),
-        segmentCount: transcript.length,
-      },
-    });
-  } catch (error) {
-    console.error('Error extracting transcript:', error);
-    const errorMessage = error instanceof Error ? error.message : 'Error extracting transcript';
-    return NextResponse.json(
-      {
-        error: errorMessage,
-        details: error instanceof Error ? error.stack : undefined,
-      },
-      { status: 500 }
-    );
-  }
-}
+//     // Wait for the transcript container to load (you may need to adjust the selector)
+//     await page.waitForSelector('ytd-transcript-renderer', { timeout: 15000 });
+    
+//     // Extract transcript data from the page.
+//     // The actual selectors may change if YouTube updates their layout.
+//     const transcript = await page.evaluate(() => {
+//       // This example assumes transcript segments are rendered as <ytd-transcript-segment-renderer> elements.
+//       const segments = document.querySelectorAll('ytd-transcript-segment-renderer');
+//       return Array.from(segments).map(segment => {
+//         // Adjust the selectors based on the page structure.
+//         const textEl = segment.querySelector('#segment-text');
+//         const timeEl = segment.querySelector('#segment-start-time');
+//         return {
+//           text: textEl ? textEl.innerText : '',
+//           // You might later parse the time strings into seconds if needed.
+//           start: timeEl ? timeEl.innerText : ''
+//         };
+//       });
+//     });
+    
+//     await browser.close();
+    
+//     return NextResponse.json({
+//       transcript,
+//       metadata: { segmentCount: transcript.length }
+//     });
+//   } catch (error) {
+//     console.error('Error scraping transcript:', error);
+//     return NextResponse.json(
+//       { error: error.message, details: error.stack },
+//       { status: 500 }
+//     );
+//   }
+// }
 
 
 
