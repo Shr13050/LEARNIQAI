@@ -9,11 +9,12 @@ export function TimelineDemo() {
     {
       title: "Personalized Learning Hub",
       content: (
-        <div>
+        <div id="plh">
             <h2 className="font-bold ">Learning That Evolves with You <Link href={'/courseGenerator'}><Button >EXPLORE</Button></Link></h2>
           <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-          LearnIQAI AI-driven learning hub evolves with you. Get curated content and real-time resources that align with your progress, ensuring that you are always moving forward.
+          LearnIQAI AI-driven learning hub evolves with you. 
           </p>
+          <p >Delivers AI-generated notes and adaptive courses, analyzing learning patterns to tailor content that addresses knowledge gaps.</p>
           <div className="grid grid-cols-2 gap-4">
             <Image
               src="/PLH1.png"
@@ -50,7 +51,7 @@ export function TimelineDemo() {
     {
       title: "Smart PDF Tutor",
       content: (
-        <div>
+        <div id="spt">
             <h2 className="font-bold">Transform PDFs Into Interactive Tutors <Link href={'/notesDashboard'}><Button >EXPLORE</Button></Link></h2>
           <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
           Turn any PDF into an interactive learning tool. Ask questions, get instant answers, and never feel lost in a textbook again.
@@ -87,7 +88,7 @@ export function TimelineDemo() {
     },{
       title: "Research Paper Summarizer",
       content: (
-        <div>
+        <div id="rps">
             <h2 className="font-bold">Streamline Research with AI-Driven Paper Summaries and audio <Link href={'/researchPaper'}><Button >EXPLORE</Button></Link></h2>
           <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
           Turn pages of research into actionable insights with our AI-powered Research Paper Summarizer. Get concise, high-impact summaries of complex papers, along with related content recommendations—so you can focus on understanding, not just reading.
@@ -130,7 +131,7 @@ export function TimelineDemo() {
       {
         title: "Career-Ready Resume Optimizer",
         content: (
-          <div>
+          <div id="cro">
             <h2><Link href={'/ats'}><Button >EXPLORE</Button></Link></h2>
             <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
             Optimize your resume with AI-driven recommendations that align with job market demands. Identify skill gaps and enhance your employability, bridging the gap between education and career
@@ -166,7 +167,7 @@ export function TimelineDemo() {
       {
         title: "AI Content Creator",
         content: (
-          <div>
+          <div id="acc">
              <h2><Link href={'/dashboard'}><Button >EXPLORE</Button></Link></h2>
             <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
             From essays to research papers, generate compelling content with AI that meets academic standards. Focus your energy on learning, while AI handles the heavy lifting of content creation.
@@ -211,10 +212,10 @@ export function TimelineDemo() {
       {
         title: "Personal Productivity Planner",
         content: (
-          <div>
+          <div id="ppp">
              <h2><Link href={'/todo'}><Button >EXPLORE</Button></Link></h2>
             <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-            ake control of your schedule with AI-powered productivity tools. Organize tasks, set goals, and track progress—all in one place. Stay focused, and achieve your academic and personal goals with ease.
+            Take control of your schedule with AI-powered productivity tools. Organize tasks, set goals, and track progress—all in one place. Stay focused, and achieve your academic and personal goals with ease.
             </p>
             <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
             Unmatched productivity that keeps you on track and goal-oriented.
@@ -235,7 +236,7 @@ export function TimelineDemo() {
       {
         title: "GitHub Repository Assistant",
         content: (
-          <div>
+          <div id="gra">
             <h2 className="font-bold">Unlock the Full Potential of Your Code <Link href={'/githubchat'}><Button >EXPLORE</Button></Link></h2>
             <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
             With the AI-powered GitHub assistant, engage with complex code repositories effortlessly. Gain deep insights into each project’s structure, understand code, and enhance your contributions
@@ -280,7 +281,7 @@ export function TimelineDemo() {
     {
       title: "Video Insight Extractor",
       content: (
-        <div>
+        <div id="vie">
           <h2 className="font-bold">Intelligent Youtube Summarizer and chatbot <Link href={'/'}><Button >EXPLORE</Button></Link></h2>
           <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
           Cut through hours of video content with LearnIQAI Video Insight Extractor. Instantly capture key takeaways and insights from any YouTube video, transforming it into an easy-to-digest summary in minutes.

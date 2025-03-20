@@ -258,7 +258,7 @@ function SelectOption() {
 
       {/* Course Duration Selection */}
       <div className="flex flex-col space-y-4">
-        <label className="text-lg font-semibold text-gray-700">Course Duration</label>
+        <label className="text-lg font-semibold text-gray-700">Estimated Learning Time</label>
         <Select.Root
           value={selectedDuration}
           onValueChange={(value) => {

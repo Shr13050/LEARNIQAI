@@ -5,21 +5,21 @@ export function AnimatedTestimonialsDemo() {
     {
       quote:
         "Your personalized learning companion powered by cutting-edge AI. Start your journey to smarter learning and career success",
-      name: "Welcome to LearniQAI!",
+      name: "Welcome to LEARNIQAI!",
       designation: "Get Started",
       src: "/LEARNIQAI.png",
     },
     {
       quote:
         "AI-driven tools, tailored learning, and career-ready features, all in one place. Its easy to get started and watch your skills grow!",
-      name: "How LearniQAI Works",
+      name: "How LEARNIQAI Works",
       designation: "Learn More",
       src: "/aiflowchart.png",
     },
     {
       quote:
-        "LearniQAI brings together advanced AI, personalized learning paths, and career development—all designed to help you thrive..",
-      name: "Why Choose LearniQAI?",
+        "LEARNIQAI brings together advanced AI, personalized learning paths, and career development—all designed to help you thrive..",
+      name: "Why Choose LEARNIQAI?",
       designation: "Discover the Benefits",
       src: "/balance.png",
     },

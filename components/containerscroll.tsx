@@ -5,13 +5,13 @@ import Image from "next/image";
 
 export function HeroScrollDemo() {
   return (
-    <div className="flex flex-col overflow-hidden bg-black">
+    <div className="flex flex-col overflow-hidden bg-black ">
       <ContainerScroll
         titleComponent={
           <>
             <h1 className="text-4xl font-semibold text-white dark:text-white">
             AI-driven learning that unlocks your potential  <br />
-              <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
+              <span className="text-4xl md:text-[6rem] font-bold mt-2 leading-none">
               one Feature at a time
               </span>
             </h1>

@@ -84,7 +84,7 @@ const SideBar = () => {
   return (
     <div className="h-screen p-5 shadow-sm border">
       <div className="flex justify-center">
-        <Image src={"/logo.svg"} alt="logo" width={100} height={100} />
+        <Image src={"/plhdashboard2.png"} alt="logo" width={100} height={100} />
       </div>
       <hr className="my-3 border" />
       <div className="mt-3">

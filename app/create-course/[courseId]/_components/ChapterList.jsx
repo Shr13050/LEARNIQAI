@@ -14,7 +14,7 @@ function ChapterList({course}) {
                     <div >
                         <h2 className='font-medium text-lg '>{chapter.chapter_name} </h2>
                         <p className='text-sm text-gray-400'>{chapter.about}</p>
-                        <p className='flex gap-2 text-primary items-center'> <TimerIcon/>{chapter.duration}</p>
+                        {/* <p className='flex gap-2 text-primary items-center'> <TimerIcon/>{chapter.duration}</p> */}
                     </div>
                 </div>
                 <CheckCircle2 className='text-3xl text-gray-400 flex-none'/>

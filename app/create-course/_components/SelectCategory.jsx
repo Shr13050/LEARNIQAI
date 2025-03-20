@@ -24,7 +24,7 @@ const SelectCategory = () => {
             <div key={index } className={`flex flex-col p-5 border items-center hover:border-purple-950 hover:bg-blue-300 cursor-pointer ${userCourseInput?.category==item.name && 'border-purple-500 bg-blue-400'}`}
             
             onClick={()=>handleCategoryChange(item.name)}>
-                <Image src={item.icon} width={50} height={50} alt='img'  />
+                <Image src={item.icon} width={70} height={70} alt='img'  />
                 <h2>{item.name}</h2>
             </div>
         ))}
