@@ -104,17 +104,95 @@
  //correct code 
 
 // // app/api/youtubeTranscript/route.ts
+// import { NextResponse } from 'next/server';
+// import { YoutubeTranscript } from 'youtube-transcript';
+
+// interface TranscriptItem {
+//   text: string;
+//   duration: number;
+//   offset: number;
+// }
+
+// export async function GET(request: Request) {
+//   try {
+//     const { searchParams } = new URL(request.url);
+//     const videoId = searchParams.get('videoId');
+
+//     if (!videoId) {
+//       return NextResponse.json(
+//         { error: 'Invalid or missing videoId' },
+//         { status: 400 }
+//       );
+//     }
+
+//     const rawTranscript = await YoutubeTranscript.fetchTranscript(videoId);
+    
+//     // Process transcript to include timing information
+//     const transcript = rawTranscript.map((item: TranscriptItem) => ({
+//       text: item.text,
+//       start: item.offset / 1000, // Convert offset from ms to seconds
+//       duration: item.duration / 1000 // Convert duration from ms to seconds
+//     }));
+
+//     // Also provide the full text for the summary generation
+//     const transcriptText = transcript
+//       .map(item => item.text)
+//       .join(' ');
+
+//     return NextResponse.json({
+//       transcript,
+//       transcriptText,
+//       metadata: {
+//         totalDuration: transcript.reduce((acc, item) => acc + item.duration, 0),
+//         segmentCount: transcript.length
+//       }
+//     });
+//   } catch (error) {
+//     console.error('Error extracting transcript:', error);
+//     const errorMessage = error instanceof Error ? error.message : 'Error extracting transcript';
+    
+//     return NextResponse.json(
+//       { 
+//         error: errorMessage,
+//         details: error instanceof Error ? error.stack : undefined
+//       },
+//       { status: 500 }
+//     );
+//   }
+// }
+
+
+
+
+// For this example you need the node-fetch npm package: `npm i node-fetch`
 import { NextResponse } from 'next/server';
 import { YoutubeTranscript } from 'youtube-transcript';
+import nodeFetch from 'node-fetch';
 
-interface TranscriptItem {
-  text: string;
-  duration: number;
-  offset: number;
+const SCRAPER_API_KEY = 'eeba84012c4e904188f66c8aa863bc13';
+
+function scraperFetch(input, init) {
+  // Determine the URL from the input
+  let url;
+  if (typeof input === 'string') {
+    url = input;
+  } else if (input instanceof URL) {
+    url = input.toString();
+  } else {
+    // input is a Request object
+    url = input.url;
+  }
+  // Encode the URL and construct the proxy URL with your ScraperAPI key
+  const encodedUrl = encodeURIComponent(url);
+  const proxyUrl = `http://api.scraperapi.com/?api_key=${SCRAPER_API_KEY}&url=${encodedUrl}`;
+  return nodeFetch(proxyUrl, init);
 }
 
-export async function GET(request: Request) {
+export async function GET(request) {
   try {
+    // Override the global fetch function used by youtube-transcript
+    globalThis.fetch = scraperFetch;
+
     const { searchParams } = new URL(request.url);
     const videoId = searchParams.get('videoId');
 
@@ -125,46 +203,39 @@ export async function GET(request: Request) {
       );
     }
 
+    // Fetch the transcript (this will use our custom fetch via ScraperAPI)
     const rawTranscript = await YoutubeTranscript.fetchTranscript(videoId);
-    
-    // Process transcript to include timing information
-    const transcript = rawTranscript.map((item: TranscriptItem) => ({
+
+    // Process transcript: convert offset and duration from milliseconds to seconds
+    const transcript = rawTranscript.map(item => ({
       text: item.text,
-      start: item.offset / 1000, // Convert offset from ms to seconds
-      duration: item.duration / 1000 // Convert duration from ms to seconds
+      start: item.offset / 1000,
+      duration: item.duration / 1000,
     }));
 
-    // Also provide the full text for the summary generation
-    const transcriptText = transcript
-      .map(item => item.text)
-      .join(' ');
+    // Combine transcript text for further processing if needed
+    const transcriptText = transcript.map(item => item.text).join(' ');
 
     return NextResponse.json({
       transcript,
       transcriptText,
       metadata: {
         totalDuration: transcript.reduce((acc, item) => acc + item.duration, 0),
-        segmentCount: transcript.length
-      }
+        segmentCount: transcript.length,
+      },
     });
   } catch (error) {
     console.error('Error extracting transcript:', error);
     const errorMessage = error instanceof Error ? error.message : 'Error extracting transcript';
-    
     return NextResponse.json(
-      { 
+      {
         error: errorMessage,
-        details: error instanceof Error ? error.stack : undefined
+        details: error instanceof Error ? error.stack : undefined,
       },
       { status: 500 }
     );
   }
 }
-
-
-
-
-
 
 
 
