@@ -1767,13 +1767,42 @@ const YouTubeSummaryPage = () => {
     }
   };
 
+  // const extractTranscriptDetails = async (url: string): Promise<TranscriptItem[]> => {
+  //   try {
+  //     const videoId = extractVideoId(url);
+  //     if (!videoId) throw new Error('Invalid YouTube URL');
+
+  //     const response = await fetch(`/api/youtubeTranscript?videoId=${videoId}`);
+  //     console.log(response);
+  //     if (!response.ok) {
+  //       const errorData = await response.json();
+  //       throw new Error(errorData.error || 'Failed to fetch transcript');
+  //     }
+      
+  //     const data = await response.json();
+  //     setTranscript(data.transcript);
+  //     return data.transcript;
+  //   } catch (error) {
+  //     const errorMessage = error instanceof Error ? error.message : 'Failed to extract transcript';
+  //     throw new Error(errorMessage);
+  //   }
+  // };
+
   const extractTranscriptDetails = async (url: string): Promise<TranscriptItem[]> => {
     try {
-      const videoId = extractVideoId(url);
-      if (!videoId) throw new Error('Invalid YouTube URL');
-
-      const response = await fetch(`/api/youtubeTranscript?videoId=${videoId}`);
+      if (!url) throw new Error('No URL provided');
+  
+      // Use POST instead of GET and send the "link" in the body
+      const response = await fetch(`/api/youtubeTranscript`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ link: url })
+      });
+      
       console.log(response);
+      
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || 'Failed to fetch transcript');
@@ -1787,7 +1816,7 @@ const YouTubeSummaryPage = () => {
       throw new Error(errorMessage);
     }
   };
-
+  
   const generateSummary = async (transcriptText: string): Promise<VideoSummary> => {
     try {
       const prompt = `Analyze the following video transcript and provide a detailed summary in JSON format. The response should be properly formatted JSON following this structure:

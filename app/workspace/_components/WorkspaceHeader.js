@@ -5,7 +5,7 @@ import React from 'react'
 function WorkspaceHeader() {
   return (
     <div className='p-4 flex justify-between shadow-md '>
-       <Image src={'/logo.svg'} alt="logo" width={100} height={100} />
+       <Image src={'/pdfai.png'} alt="logo" width={70} height={70} />
        <UserButton/>
     </div>
   )

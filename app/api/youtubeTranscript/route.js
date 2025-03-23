@@ -98,58 +98,157 @@
 
 
 
+//localhost correct 
 
+// import { NextResponse } from 'next/server';
+// import { getSubtitles } from 'youtube-captions-scraper';
 
-import { NextResponse } from 'next/server';
-import { getSubtitles } from 'youtube-captions-scraper';
+// export async function GET(request) {
+//   try {
+//     const { searchParams } = new URL(request.url);
+//     const videoId = searchParams.get('videoId');
 
-export async function GET(request) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const videoId = searchParams.get('videoId');
+//     if (!videoId) {
+//       return NextResponse.json(
+//         { error: 'Invalid or missing videoId' },
+//         { status: 400 }
+//       );
+//     }
 
-    if (!videoId) {
-      return NextResponse.json(
-        { error: 'Invalid or missing videoId' },
-        { status: 400 }
-      );
-    }
-
-    // Fetch subtitles using youtube-captions-scraper
-    const subtitles = await getSubtitles({
-      videoID: videoId,
-      lang: 'en' // Default language is English
-    });
+//     // Fetch subtitles using youtube-captions-scraper
+//     const subtitles = await getSubtitles({
+//       videoID: videoId,
+//       lang: 'en' // Default language is English
+//     });
     
 
-    // Process transcript to include start time and duration
-    const transcript = subtitles.map(sub => ({
-      text: sub.text,
-      start: sub.start, // Already in seconds
-      duration: sub.dur // Already in seconds
-    }));
+//     // Process transcript to include start time and duration
+//     const transcript = subtitles.map(sub => ({
+//       text: sub.text,
+//       start: sub.start, // Already in seconds
+//       duration: sub.dur // Already in seconds
+//     }));
 
-    // Generate full transcript text
-    const transcriptText = transcript.map(item => item.text).join(' ');
+//     // Generate full transcript text
+//     const transcriptText = transcript.map(item => item.text).join(' ');
 
-    return NextResponse.json({
-      transcript,
-      transcriptText,
-      metadata: {
-        totalDuration: transcript.reduce((acc, item) => acc + item.duration, 0),
-        segmentCount: transcript.length
-      }
+//     return NextResponse.json({
+//       transcript,
+//       transcriptText,
+//       metadata: {
+//         totalDuration: transcript.reduce((acc, item) => acc + item.duration, 0),
+//         segmentCount: transcript.length
+//       }
+//     });
+//   } catch (error) {
+//     console.error('Error extracting transcript:', error);
+//     const errorMessage = error instanceof Error ? error.message : 'Error extracting transcript';
+
+//     return NextResponse.json(
+//       { 
+//         error: errorMessage,
+//         details: error instanceof Error ? error.stack : undefined
+//       },
+//       { status: 500 }
+//     );
+//   }
+// }
+
+
+// export async function GET(request) {
+//   const { searchParams } = new URL(request.url);
+//   const videoId = searchParams.get('videoId');
+  
+//   if (!videoId) {
+//     return new Response(JSON.stringify({ error: 'Video ID is required' }), {
+//       status: 400,
+//       headers: { 'Content-Type': 'application/json' }
+//     });
+//   }
+  
+//   try {
+//     // Call your deployed transcript API
+//     const response = await fetch(`https://youtube-transcript-fetcher-backend-gas9.vercel.app/api/transcript/${videoId}`);
+    
+//     if (!response.ok) {
+//       throw new Error('Failed to fetch transcript');
+//     }
+    
+//     const data = await response.json();
+    
+//     // Transform the transcript data to match your app's expected format
+//     const formattedTranscript = data.transcript.map(item => ({
+//       text: item.text,
+//       start: parseFloat(item.offset), // Convert offset to start and parse as number
+//       duration: parseFloat(item.duration) // Parse duration as number
+//     }));
+    
+//     return new Response(JSON.stringify({ transcript: formattedTranscript }), {
+//       status: 200,
+//       headers: { 'Content-Type': 'application/json' }
+//     });
+//   } catch (error) {
+//     console.error('Error fetching transcript:', error);
+//     return new Response(JSON.stringify({ error: error.message }), {
+//       status: 500,
+//       headers: { 'Content-Type': 'application/json' }
+//     });
+//   }
+// }
+ 
+
+
+ // Example: /app/api/transcript/route.js
+
+export async function POST(request) {
+  try {
+    // Parse the incoming JSON payload
+    const { link } = await request.json();
+    if (!link) {
+      return new Response(
+        JSON.stringify({ error: 'Link not provided' }),
+        {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
+    }
+    
+    // Make a POST request to your deployed transcript API
+    const response = await fetch("https://youtube-transcript-fetcher-backend.onrender.com/api/transcript", {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ link })
     });
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch transcript');
+    }
+    
+    const data = await response.json();
+    
+    // Format the transcript array
+    const formattedTranscript = data.transcript.map(item => ({
+      text: item.text,
+      start: parseFloat(item.offset),  // convert offset to a number
+      duration: parseFloat(item.duration)
+    }));
+    
+    return new Response(
+      JSON.stringify({ transcript: formattedTranscript }),
+      {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      }
+    );
   } catch (error) {
-    console.error('Error extracting transcript:', error);
-    const errorMessage = error instanceof Error ? error.message : 'Error extracting transcript';
-
-    return NextResponse.json(
-      { 
-        error: errorMessage,
-        details: error instanceof Error ? error.stack : undefined
-      },
-      { status: 500 }
+    console.error('Error fetching transcript:', error);
+    return new Response(
+      JSON.stringify({ error: error.message }),
+      {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      }
     );
   }
 }

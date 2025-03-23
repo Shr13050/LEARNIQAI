@@ -25,12 +25,12 @@ const SideNav = () => {
   return (
     <div className="h-screen p-5 shadow-sm border">
       <div className="flex justify-center">
-        <Image src={'/logo.svg'} alt="logo" width={100} height={100} />
+        <Image src={'/pdfai.png'} alt="logo" width={100} height={100} className='m-3' />
       </div>
       <div>
        
         <UploadPdfDialog>
-        <Button className='w-full mt-3'>+Upload Pdf</Button>
+        <Button className='w-full mt-7'>+Upload Pdf</Button>
         </UploadPdfDialog>
 
       </div>

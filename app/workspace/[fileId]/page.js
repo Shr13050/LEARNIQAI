@@ -58,7 +58,7 @@ function Workspace() {
     <div>
       <WorkspaceHeader />
       <div className="grid grid-cols-2 gap-5" >
-        <div>Text Editor
+        <div>
 
           <TextEditor/>
         </div>
