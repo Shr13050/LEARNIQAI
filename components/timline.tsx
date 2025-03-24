@@ -282,7 +282,7 @@ export function TimelineDemo() {
       title: "Video Insight Extractor",
       content: (
         <div id="vie">
-          <h2 className="font-bold">Intelligent Youtube Summarizer and chatbot <Link href={'/'}><Button >EXPLORE</Button></Link></h2>
+          <h2 className="font-bold">Intelligent Youtube Summarizer and chatbot <Link href={'/youtubeSummarizer'}><Button >EXPLORE</Button></Link></h2>
           <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
           Cut through hours of video content with LearnIQAI Video Insight Extractor. Instantly capture key takeaways and insights from any YouTube video, transforming it into an easy-to-digest summary in minutes.
           </p>

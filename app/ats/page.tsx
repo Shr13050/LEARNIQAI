@@ -1905,7 +1905,7 @@
 
 // export default ATSAnalyzer;
 
-
+//correct code latest
 "use client"
 
 import React, { useState, useEffect } from 'react';
@@ -2356,3 +2356,4 @@ const ATSAnalyzer = () => {
 };
 
 export default ATSAnalyzer;
+
