@@ -134,140 +134,147 @@
 // //   );
 // // }
 
-'use client';
 
-import { useState } from 'react';
-import { Send } from 'lucide-react';
+// try this working 
+// 'use client';
 
-export default function JobListingsPage() {
-  const [jobs, setJobs] = useState([]);
-  const [input, setInput] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+// import { useState } from 'react';
+// import { Send } from 'lucide-react';
 
-  const fetchJobListings = async (e) => {
-    e.preventDefault();
+// export default function JobListingsPage() {
+//   const [jobs, setJobs] = useState([]);
+//   const [input, setInput] = useState('');
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [error, setError] = useState(null);
+
+//   const fetchJobListings = async (e) => {
+//     e.preventDefault();
     
-    setIsLoading(true);
-    setError(null);
+//     setIsLoading(true);
+//     setError(null);
 
-    try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          messages: [
-            { 
-              role: 'user', 
-              content: input 
-            }
-          ]
-        }),
-      });
+//     try {
+//       const response = await fetch('/api/chat', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({ 
+//           messages: [
+//             { 
+//               role: 'user', 
+//               content: input 
+//             }
+//           ]
+//         }),
+//       });
 
-      // Parse response
-      const data = await response.json();
+//       // Parse response
+//       const data = await response.json();
 
-      // Handle error responses
-      if (!response.ok || data.error) {
-        throw new Error(data.error || 'Something went wrong');
-      }
+//       // Handle error responses
+//       if (!response.ok || data.error) {
+//         throw new Error(data.error || 'Something went wrong');
+//       }
 
-      // Update jobs state
-      if (data.data && Array.isArray(data.data)) {
-        setJobs(data.data);
-      } else {
-        throw new Error('Invalid response format');
-      }
+//       // Update jobs state
+//       if (data.data && Array.isArray(data.data)) {
+//         setJobs(data.data);
+//       } else {
+//         throw new Error('Invalid response format');
+//       }
 
-    } catch (error) {
-      console.error('Fetch error:', error);
-      setError(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+//     } catch (error) {
+//       console.error('Fetch error:', error);
+//       setError(error.message);
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   };
 
-  return (
-    <div className="container mx-auto p-4">
-      {/* Error Banner */}
-      {error && (
-        <div className="bg-red-100 text-red-800 p-3 text-center mb-4">
-          {error}
-        </div>
-      )}
+//   return (
+//     <div className="container mx-auto p-4">
+//       {/* Error Banner */}
+//       {error && (
+//         <div className="bg-red-100 text-red-800 p-3 text-center mb-4">
+//           {error}
+//         </div>
+//       )}
 
-      {/* Search Form */}
-      <form onSubmit={fetchJobListings} className="mb-6 flex">
-        <input 
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Paste job listings text..."
-          className="flex-grow p-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <button 
-          type="submit" 
-          disabled={!input.trim() || isLoading}
-          className="bg-blue-500 text-white p-2 rounded-r-lg disabled:opacity-50 hover:bg-blue-600 transition-colors"
-        >
-          <Send size={20} />
-        </button>
-      </form>
+//       {/* Search Form */}
+//       <form onSubmit={fetchJobListings} className="mb-6 flex">
+//         <input 
+//           type="text"
+//           value={input}
+//           onChange={(e) => setInput(e.target.value)}
+//           placeholder="Paste job listings text..."
+//           className="flex-grow p-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+//         />
+//         <button 
+//           type="submit" 
+//           disabled={!input.trim() || isLoading}
+//           className="bg-blue-500 text-white p-2 rounded-r-lg disabled:opacity-50 hover:bg-blue-600 transition-colors"
+//         >
+//           <Send size={20} />
+//         </button>
+//       </form>
 
-      {/* Loading Indicator */}
-      {isLoading && (
-        <div className="text-center text-gray-600">
-          Processing job listings...
-        </div>
-      )}
+//       {/* Loading Indicator */}
+//       {isLoading && (
+//         <div className="text-center text-gray-600">
+//           Processing job listings...
+//         </div>
+//       )}
 
-      {/* Job Listings Table */}
-      {jobs.length > 0 && (
-        <div className="overflow-x-auto">
-          <table className="w-full bg-white shadow-md rounded-lg overflow-hidden">
-            <thead className="bg-blue-500 text-white">
-              <tr>
-                <th className="p-3 text-left">Company</th>
-                <th className="p-3 text-left">Title</th>
-                <th className="p-3 text-left">Location</th>
-                <th className="p-3 text-left">Job Type</th>
-                <th className="p-3 text-left">Experience</th>
-                <th className="p-3 text-left">Apply</th>
-              </tr>
-            </thead>
-            <tbody>
-              {jobs.map((job, index) => (
-                <tr 
-                  key={index} 
-                  className="border-b hover:bg-gray-100 transition-colors"
-                >
-                  <td className="p-3">{job.company}</td>
-                  <td className="p-3">{job.title}</td>
-                  <td className="p-3">{job.location}</td>
-                  <td className="p-3">{job.jobType}</td>
-                  <td className="p-3">{job.experience}</td>
-                  <td className="p-3">
-                    <a 
-                      href={job.applyLink} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Apply Now
-                    </a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </div>
-  );
-}
+//       {/* Job Listings Table */}
+//       {jobs.length > 0 && (
+//         <div className="overflow-x-auto">
+//           <table className="w-full bg-white shadow-md rounded-lg overflow-hidden">
+//             <thead className="bg-blue-500 text-white">
+//               <tr>
+//                 <th className="p-3 text-left">Company</th>
+//                 <th className="p-3 text-left">Title</th>
+//                 <th className="p-3 text-left">Location</th>
+//                 <th className="p-3 text-left">Job Type</th>
+//                 <th className="p-3 text-left">Experience</th>
+//                 <th className="p-3 text-left">Apply</th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//               {jobs.map((job, index) => (
+//                 <tr 
+//                   key={index} 
+//                   className="border-b hover:bg-gray-100 transition-colors"
+//                 >
+//                   <td className="p-3">{job.company}</td>
+//                   <td className="p-3">{job.title}</td>
+//                   <td className="p-3">{job.location}</td>
+//                   <td className="p-3">{job.jobType}</td>
+//                   <td className="p-3">{job.experience}</td>
+//                   <td className="p-3">
+//                     <a 
+//                       href={job.applyLink} 
+//                       target="_blank" 
+//                       rel="noopener noreferrer"
+//                       className="text-blue-500 hover:underline"
+//                     >
+//                       Apply Now
+//                     </a>
+//                   </td>
+//                 </tr>
+//               ))}
+//             </tbody>
+//           </table>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+
+
+
+
+
 // 'use client';
 
 // import { useState, useEffect } from 'react';

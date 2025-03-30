@@ -57,87 +57,93 @@
 //     );
 //   }
 // }
-import { NextResponse } from 'next/server';
-import Groq from 'groq-sdk';
+//
 
-// Initialize Groq client
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY
-});
 
-export async function POST(req) {
-  try {
-    // Parse the request body
-    const body = await req.json();
-    const { messages } = body;
 
-    // Validate input
-    if (!messages || !Array.isArray(messages)) {
-      return NextResponse.json(
-        { error: 'Invalid request: messages must be an array' }, 
-        { status: 400 }
-      );
-    }
 
-    // Modify the system prompt to ensure structured output
-    const structuredPrompt = [
-      ...messages,
-      {
-        role: 'system',
-        content: `
+//this check woking 
+// import { NextResponse } from 'next/server';
+// import Groq from 'groq-sdk';
+
+// // Initialize Groq client
+// const groq = new Groq({
+//   apiKey: process.env.GROQ_API_KEY
+// });
+
+// export async function POST(req) {
+//   try {
+//     // Parse the request body
+//     const body = await req.json();
+//     const { messages } = body;
+
+//     // Validate input
+//     if (!messages || !Array.isArray(messages)) {
+//       return NextResponse.json(
+//         { error: 'Invalid request: messages must be an array' }, 
+//         { status: 400 }
+//       );
+//     }
+
+//     // Modify the system prompt to ensure structured output
+//     const structuredPrompt = [
+//       ...messages,
+//       {
+//         role: 'system',
+//         content: `
         
-        Convert the job listings into a structured, machine-readable format. 
-        Provide the response as a JSON object with the following keys:
-        - status: "success"
-        - data: An array of job listings, where each listing contains:
-          * company: Company name
-          * title: Job title
-          * location: City location
-          * jobType: "Intern"
-          * experience: Experience range
-          * applyLink: URL to apply
-        Use the exact data from the original input, maintaining all details.
-        `
-      }
-    ];
+//         Convert the job listings into a structured, machine-readable format. 
+//         Provide the response as a JSON object with the following keys:
+//         - status: "success"
+//         - data: An array of job listings, where each listing contains:
+//           * company: Company name
+//           * title: Job title
+//           * location: City location
+//           * jobType: "Intern"
+//           * experience: Experience range
+//           * applyLink: URL to apply
+//         Use the exact data from the original input, maintaining all details.
+//         `
+//       }
+//     ];
 
-    // Create chat completion
-    const chatCompletion = await groq.chat.completions.create({
-      messages: structuredPrompt,
-      model: "llama3-8b-8192",
-      response_format: { type: "json_object" }
-    });
+//     // Create chat completion
+//     const chatCompletion = await groq.chat.completions.create({
+//       messages: structuredPrompt,
+//       model: "llama3-8b-8192",
+//       response_format: { type: "json_object" }
+//     });
 
-    // Extract AI message
-    const aiMessage = chatCompletion.choices[0]?.message?.content;
+//     // Extract AI message
+//     const aiMessage = chatCompletion.choices[0]?.message?.content;
 
-    // Validate AI response
-    if (!aiMessage) {
-      return NextResponse.json(
-        { error: 'No response generated' }, 
-        { status: 500 }
-      );
-    }
+//     // Validate AI response
+//     if (!aiMessage) {
+//       return NextResponse.json(
+//         { error: 'No response generated' }, 
+//         { status: 500 }
+//       );
+//     }
 
-    // Parse the JSON response
-    const parsedResponse = JSON.parse(aiMessage);
+//     // Parse the JSON response
+//     const parsedResponse = JSON.parse(aiMessage);
 
-    // Return successful response
-    return NextResponse.json(parsedResponse, { status: 200 });
+//     // Return successful response
+//     return NextResponse.json(parsedResponse, { status: 200 });
 
-  } catch (error) {
-    console.error('Groq API Error:', error);
+//   } catch (error) {
+//     console.error('Groq API Error:', error);
 
-    // Return error response
-    return NextResponse.json(
-      { 
-        error: 'Failed to process request',
-        details: error.message 
-      }, 
-      { status: 500 }
-    );
-  }
-}
+//     // Return error response
+//     return NextResponse.json(
+//       { 
+//         error: 'Failed to process request',
+//         details: error.message 
+//       }, 
+//       { status: 500 }
+//     );
+//   }
+// }
 
 // //correct 
 // import { NextResponse } from 'next/server';
