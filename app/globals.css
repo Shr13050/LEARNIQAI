@@ -2,14 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-/* Basic editor styles */
 .tiptap {
-  :first-child {
+  > *:first-child {
     margin-top: 0;
   }
+
 
   /* List styles */
   ul, 
@@ -173,7 +170,7 @@ body {
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-[hsl(var(--border))];
   }
   body {
     @apply bg-background text-foreground;
