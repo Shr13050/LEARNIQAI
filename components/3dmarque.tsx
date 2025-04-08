@@ -38,16 +38,15 @@ export function ThreeDMarqueeDemoSecond() {
   return (
     <div className="relative mx-auto my-10 flex h-screen w-full max-w-7xl flex-col items-center justify-center overflow-hidden rounded-3xl">
       <h2 className="relative z-20 mx-auto max-w-4xl text-center text-2xl font-bold text-balance text-white md:text-4xl lg:text-6xl">
-        This is your life and it&apos;s ending one{" "}
+      Greatness begins with relentless curiosity, fearless ambition, and the tools to transform both — and {" "}
         <span className="relative z-20 inline-block rounded-xl bg-blue-500/40 px-4 py-1 text-white underline decoration-sky-500 decoration-[6px] underline-offset-[16px] backdrop-blur-sm">
-          moment
+        LEARNIQAI 
         </span>{" "}
-        at a time.
+        fuels it all
       </h2>
       <p className="relative z-20 mx-auto max-w-2xl py-8 text-center text-sm text-neutral-200 md:text-base">
-        You are not your job, you&apos;re not how much money you have in the
-        bank. You are not the car you drive. You&apos;re not the contents of
-        your wallet.
+      It decodes complexity, accelerates learning, and fuels your ambition —
+      because the future belongs to those who learn, adapt, and lead.
       </p>
 
       <div className="relative z-20 flex flex-wrap items-center justify-center gap-4 pt-4">

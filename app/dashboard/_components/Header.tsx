@@ -9,7 +9,7 @@ const Header = () => {
             <input type="text" placeholder='Search...' className='outline-none' />
         </div>
         <div>
-            <h2 className='bg-primary p-3 rounded-xl text-xs text-white'>A TAG LINE COMES HERE </h2>
+            <h2 className='bg-primary p-4 rounded-xl text-base font-bold text-white'>We bring the brains, you bring the vibes</h2>
         </div>
     </div>
   )

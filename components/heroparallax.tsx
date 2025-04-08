@@ -10,93 +10,93 @@ export const products = [
     title: "Moonbeam",
     link: "https://gomoonbeam.com",
     thumbnail:
-      "/LEARNIQAI.png",
+      "/balance.png",
   },
   {
     title: "Cursor",
     link: "https://cursor.so",
     thumbnail:
-      "/LEARNIQAI.png",
+      "/aiflowchart.png",
   },
   {
     title: "Rogue",
     link: "https://userogue.com",
     thumbnail:
-      "/LEARNIQAI.png",
+      "/cr2.png",
   },
 
   {
     title: "Editorially",
     link: "https://editorially.org",
     thumbnail:
-      "/LEARNIQAI.png",
+      "/cr3.png",
   },
   {
     title: "Editrix AI",
     link: "https://editrix.ai",
     thumbnail:
-      "/LEARNIQAI.png",
+      "/cr4.png",
   },
   {
     title: "Pixel Perfect",
     link: "https://app.pixelperfect.quest",
     thumbnail:
-      "/LEARNIQAI.png",
+      "/cr5.jpeg",
   },
 
   {
     title: "Algochurn",
     link: "https://algochurn.com",
     thumbnail:
-      "/LEARNIQAI.png",
+      "/cr6.png",
   },
   {
     title: "Aceternity UI",
     link: "https://ui.aceternity.com",
     thumbnail:
-      "/LEARNIQAI.png",
+      "/cr7.avif",
   },
   {
     title: "Tailwind Master Kit",
     link: "https://tailwindmasterkit.com",
     thumbnail:
-      "/LEARNIQAI.png",
+      "/cr8.png",
   },
   {
     title: "SmartBridge",
     link: "https://smartbridgetech.com",
     thumbnail:
-      "/LEARNIQAI.png",
+      "/frontend_img.jpg",
   },
   {
     title: "Renderwork Studio",
     link: "https://renderwork.studio",
     thumbnail:
-      "/LEARNIQAI.png",
+      "/interview.png",
   },
 
   {
     title: "Creme Digital",
     link: "https://cremedigital.com",
     thumbnail:
-      "/LEARNIQAI.png",
+      "/logolearniqai.png",
   },
   {
     title: "Golden Bells Academy",
     link: "https://goldenbellsacademy.com",
     thumbnail:
-      "/LEARNIQAI.png",
+      "/cr10.jpg",
   },
   {
     title: "Invoker Labs",
     link: "https://invoker.lol",
     thumbnail:
-      "/LEARNIQAI.png",
+      "/cr11.jpeg",
   },
   {
     title: "E Free Invoice",
     link: "https://efreeinvoice.com",
     thumbnail:
-      "/LEARNIQAI.png",
+      "/cr12.jpg",
   },
 ];

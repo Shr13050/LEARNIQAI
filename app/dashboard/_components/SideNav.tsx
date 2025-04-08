@@ -126,16 +126,16 @@ const SideNav = () => {
       icon: Home,
       path: '/dashboard',
     },
-    {
-      name: 'History',
-      icon: FileClock,
-      path: '/dashboard/history',
-    },
-    {
-      name: 'Setting',
-      icon: Settings,
-      path: '/dashboard/setting',
-    },
+    // {
+    //   name: 'History',
+    //   icon: FileClock,
+    //   path: '/dashboard/history',
+    // },
+    // {
+    //   name: 'Setting',
+    //   icon: Settings,
+    //   path: '/dashboard/setting',
+    // },
   ];
 
   // Ensure code runs only on the client side by using useEffect
@@ -144,7 +144,7 @@ const SideNav = () => {
   return (
     <div className="h-screen p-5 shadow-sm border">
       <div className="flex justify-center">
-        <Image src={'/logo.svg'} alt="logo" width={100} height={100} />
+        <Image src={'/logolearniqai.png'} alt="logo" width={100} height={100} />
       </div>
       <hr className="my-3 border" />
       <div className="mt-3">

@@ -89,8 +89,8 @@ const CreateNewContent = () => {
         </div>
 
         {/* Output section */}
-        <div className="col-span-1 md:grid-cols-2">
-          <OutputSection aiOutput={aiOutput} />
+        <div className="col-span-1 md:col-span-2">
+            <OutputSection aiOutput={aiOutput} />
         </div>
       </div>
     </div>

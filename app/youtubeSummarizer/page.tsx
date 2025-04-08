@@ -1572,6 +1572,7 @@ import { useState, useEffect, useRef } from 'react';
 import { chatSession } from '@/utils/AiModel';
 import YouTube from 'react-youtube';
 import TextToSpeech from "@/components/TextToSpeech";
+import { LampDemo } from '@/components/lamp';
 
 interface VideoMetadata {
   title: string;
@@ -1929,8 +1930,14 @@ const YouTubeSummaryPage = () => {
   
   
   return (
+    <>
+    <div>
+    <LampDemo/>
+    </div>
     <div className="max-w-6xl mx-auto p-8">
+      
       <h1 className="text-4xl font-semibold text-center mb-6">
+        
         YouTube Video Analysis & Summary
       </h1>
       
@@ -2049,6 +2056,7 @@ const YouTubeSummaryPage = () => {
   
         
       </div>
+      </>
     );
   };
   
