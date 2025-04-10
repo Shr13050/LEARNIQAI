@@ -1954,7 +1954,7 @@ const YouTubeSummaryPage = () => {
       {videoId && (
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-4">
-            <div className="relative pt-[56.25%] w-full">
+            <div className="relative pt-[56.25%] w-full flex justify-between items-center">
               <YouTube
                 videoId={videoId}
                 opts={{
