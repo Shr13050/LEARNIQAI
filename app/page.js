@@ -42,9 +42,14 @@ export default function Home() {
   }
 
   return (
-  <div>
+    <>
+  <div className="text-black" style={{
+    // background: "linear-gradient(90deg,rgba(152, 72, 232, 1) 0%, rgba(105, 16, 194, 1) 6%, rgba(81, 12, 232, 0.87) 18%, rgba(21, 50, 194, 1) 24%, rgba(136, 235, 235, 1) 54%, rgba(204, 83, 237, 1) 88%, rgba(111, 109, 212, 1) 96%)"
+    background: "linear-gradient(90deg,rgba(207, 175, 240, 1) 0%, rgba(116, 13, 219, 1) 6%, rgba(81, 12, 232, 0.87) 18%, rgba(61, 21, 194, 1) 24%, rgba(90, 31, 240, 1) 54%, rgba(137, 83, 237, 1) 88%, rgba(142, 140, 237, 1) 96%)"
+  }}>
     <header className="bg-white">
   <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
+  <img src="/logolearniqai.png" height={50} width={50}  alt="logo"/>
   <h1 className="font-bold text-2xl mx-[-12px]">LEARNIQAI</h1>
     <a className="block text-teal-600" href="#">
       <span className="sr-only">Home</span>
@@ -62,16 +67,17 @@ export default function Home() {
     <div className="flex flex-1 items-center justify-end md:justify-between">
       <nav aria-label="Global" className="hidden md:block">
         <ul className="flex items-center gap-6 text-sm">
+      
+
           <li>
-            <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> About Us </a>
+            <a className="text-black font-bold text-xl transition hover:text-gray-500/75" href="https://framevr.io/learniqai-workspace"> 3D-Collaborative Workspace</a>
           </li>
 
           <li>
-            <a className="text-gray-500 transition hover:text-gray-500/75" href="https://framevr.io/learniqai-workspace"> 3D-Collaborative Workspace</a>
+            <a className="text-black font-bold text-xl transition hover:text-gray-500/75" href="#foot"> Contact Us </a>
           </li>
-
           <li>
-            <a className="text-gray-500 transition hover:text-gray-500/75" href="#foot"> Contact Us </a>
+            <a className="transition hover:text-gray-500/75 text-black font-bold text-xl" href="/team"> About the Team </a>
           </li>
 
           {/* <li>
@@ -692,6 +698,7 @@ export default function Home() {
     
    
   </div>
+  </>
   );
 }
 

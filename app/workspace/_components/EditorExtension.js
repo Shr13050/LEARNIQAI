@@ -83,7 +83,7 @@ function EditorExtension({ editor }) {
     const PROMPT =
       "For Question:" +
       selectedText +
-      "please give appropriate answer in proper presentable format with headings gaps, spaces and bullet points in html format and also with the given content as answer,The answer content is: " +
+      "please give appropriate answer in proper presentable format with headings gaps, spaces and bullet points in html format and also with the given content as answer.Also suggest the 3 important follow up questions that user can ask in bold format Also mention the 2 cases if you are weak in this topic ,then suggest relavent question and second case if you are strong or intermediate in the topic these are the suggested questions.The answer content is: " +
       AllUnformattedAns;
     // const PROMPT ="For Question:"+selectedText+" and with the given content as answer,"+
     // "please give appropriate answer .The answer content is: "+AllUnformattedAns

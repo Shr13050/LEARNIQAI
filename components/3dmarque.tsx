@@ -44,7 +44,7 @@ export function ThreeDMarqueeDemoSecond() {
         </span>{" "}
         fuels it all
       </h2>
-      <p className="relative z-20 mx-auto max-w-2xl py-8 text-center text-sm text-neutral-200 md:text-base">
+      <p className="relative z-20 mx-auto max-w-2xl py-8 text-center text-lg text-neutral-200 ">
       It decodes complexity, accelerates learning, and fuels your ambition —
       because the future belongs to those who learn, adapt, and lead.
       </p>

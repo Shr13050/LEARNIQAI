@@ -5,6 +5,7 @@ const isProtectedRoute = createRouteMatcher([
     '/',
     '/youtubeSummarizer'
     
+    
 ])
 
 export default clerkMiddleware(async (auth:any, req:any) => {

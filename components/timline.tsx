@@ -10,11 +10,15 @@ export function TimelineDemo() {
       title: "Personalized Learning Hub",
       content: (
         <div id="plh">
-            <h2 className="font-bold ">Learning That Evolves with You <Link href={'/courseGenerator'}><Button >EXPLORE</Button></Link></h2>
-          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
+            <h2 className="font-bold text-xl">Learning That Evolves with You <Link href={'/courseGenerator'}><Button >EXPLORE</Button></Link></h2>
+          <p className="text-indigo-700 text-lg  font-bold mb-8 mt-3">
           LearnIQAI AI-driven learning hub evolves with you. 
+
+          <br />
+          <span className="font-normal text-justify text-black"> Delivers AI-generated notes and adaptive courses, analyzing learning patterns to tailor content that addresses knowledge gaps.</span>
+          
           </p>
-          <p >Delivers AI-generated notes and adaptive courses, analyzing learning patterns to tailor content that addresses knowledge gaps.</p>
+          {/* <p className="text-lg" >Delivers AI-generated notes and adaptive courses, analyzing learning patterns to tailor content that addresses knowledge gaps.</p> */}
           <div className="grid grid-cols-2 gap-4">
             <Image
               src="/PLH1.png"
@@ -52,13 +56,16 @@ export function TimelineDemo() {
       title: "Smart PDF Tutor",
       content: (
         <div id="spt">
-            <h2 className="font-bold">Transform PDFs Into Interactive Tutors <Link href={'/notesDashboard'}><Button >EXPLORE</Button></Link></h2>
-          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-          Turn any PDF into an interactive learning tool. Ask questions, get instant answers, and never feel lost in a textbook again.
+            <h2 className="font-bold text-xl">Transform PDFs Into Interactive Tutors <Link href={'/notesDashboard'}><Button >EXPLORE</Button></Link></h2>
+            <p className="text-indigo-700 text-lg  font-bold mb-8 mt-3">
+            Turn any PDF into an interactive learning tool. Ask questions, get instant answers, and never feel lost in a textbook again.
+
+          <br />
+          <span className="font-normal text-justify text-black">           On-demand learning from any PDF.
+          </span>
+          
           </p>
-          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-          On-demand learning from any PDF.
-          </p>
+          
           <div className="grid grid-cols-2 gap-4">
             <Image
               src="/st1.png"
@@ -89,9 +96,13 @@ export function TimelineDemo() {
       title: "Research Paper Summarizer",
       content: (
         <div id="rps">
-            <h2 className="font-bold">Streamline Research with AI-Driven Paper Summaries and audio <Link href={'/researchPaper'}><Button >EXPLORE</Button></Link></h2>
-          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
-          Turn pages of research into actionable insights with our AI-powered Research Paper Summarizer. Get concise, high-impact summaries of complex papers, along with related content recommendations—so you can focus on understanding, not just reading.
+            <h2 className="font-bold text-xl">Streamline Research with AI-Driven Paper Summaries and audio <Link href={'/researchPaper'}><Button >EXPLORE</Button></Link></h2>
+          
+          <p className="text-indigo-700 text-lg  font-bold mb-8 mt-3">
+          Turn pages of research into actionable insights with our AI-powered Research Paper Summarizer. 
+          <br />
+          <span className="font-normal text-justify text-black"> Get concise, high-impact summaries of complex papers, along with related content recommendations—so you can focus on understanding, not just reading.</span>
+          
           </p>
           
           <div className="grid grid-cols-2 gap-4">
@@ -132,10 +143,15 @@ export function TimelineDemo() {
         title: "Career-Ready Resume Optimizer",
         content: (
           <div id="cro">
-            <h2><Link href={'/ats'}><Button >EXPLORE</Button></Link></h2>
-            <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-            Optimize your resume with AI-driven recommendations that align with job market demands. Identify skill gaps and enhance your employability, bridging the gap between education and career
-            </p>
+            {/* <h2><Link href={'/ats'}><Button >EXPLORE</Button></Link></h2> */}
+            <h2 className="font-bold text-xl">Optimize your resume for Applicant Tracking Systems  <Link href={'/ats'}><Button >EXPLORE</Button></Link></h2>
+
+            <p className="text-indigo-700 text-lg  font-bold mb-8 mt-3">
+            Identify skill gaps and enhance your employability, bridging the gap between education and career.
+          <br />
+          <span className="font-normal text-justify text-black"> Get personalized skill development roadmaps to improve your qualification</span>
+          
+          </p>
            
             <div className="grid grid-cols-2 gap-4">
               <Image
@@ -168,14 +184,16 @@ export function TimelineDemo() {
         title: "AI Content Creator",
         content: (
           <div id="acc">
-             <h2><Link href={'/dashboard'}><Button >EXPLORE</Button></Link></h2>
-            <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
+             <h2 className="font-bold text-xl"><Link href={'/dashboard'}> Empowering Academic Content Through AI <Button >EXPLORE</Button></Link></h2>
+           
+            <p className="text-indigo-700 text-lg  font-bold mb-8 mt-3">
             From essays to research papers, generate compelling content with AI that meets academic standards. Focus your energy on learning, while AI handles the heavy lifting of content creation.
-            </p>
-            <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-            Streamline the content creation process, ensuring quality and efficiency.
 
-            </p>
+          <br />
+          <span className="font-normal text-justify text-black">             Streamline the content creation process, ensuring quality and efficiency.
+          </span>
+          
+          </p>
             <div className="grid grid-cols-2 gap-4">
               <Image
                 src="/cg1.png"
@@ -213,13 +231,16 @@ export function TimelineDemo() {
         title: "Personal Productivity Planner",
         content: (
           <div id="ppp">
-             <h2><Link href={'/todo'}><Button >EXPLORE</Button></Link></h2>
-            <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
+             <h2 className="font-bold text-xl"><Link href={'/todo'}> Master Your Goals with AI <Button >EXPLORE</Button></Link></h2>
+           
+            <p className="text-indigo-700 text-lg  font-bold mb-8 mt-3">
             Take control of your schedule with AI-powered productivity tools. Organize tasks, set goals, and track progress—all in one place. Stay focused, and achieve your academic and personal goals with ease.
-            </p>
-            <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-            Unmatched productivity that keeps you on track and goal-oriented.
-            </p>
+
+          <br />
+          <span className="font-normal text-justify text-black">             Unmatched productivity that keeps you on track and goal-oriented.
+          </span>
+          
+          </p>
             <div className="grid grid-cols-2 gap-4">
               <Image
                 src="/todo.png"
@@ -237,13 +258,17 @@ export function TimelineDemo() {
         title: "GitHub Repository Assistant",
         content: (
           <div id="gra">
-            <h2 className="font-bold">Unlock the Full Potential of Your Code <Link href={'/githubchat'}><Button >EXPLORE</Button></Link></h2>
-            <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
+            <h2 className="font-bold text-xl">Unlock the Full Potential of Your Code <Link href={'/githubchat'}><Button >EXPLORE</Button></Link></h2>
+            
+            <p className="text-indigo-700 text-lg  font-bold mb-8 mt-3">
             With the AI-powered GitHub assistant, engage with complex code repositories effortlessly. Gain deep insights into each project’s structure, understand code, and enhance your contributions
-            </p>
-            <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-            Master complex code faster with AI-guided assistance.
-            </p>
+
+          <br />
+          <span className="font-normal text-justify text-black">                         Master complex code faster with AI-guided assistance.
+
+          </span>
+          
+          </p>
             <div className="grid grid-cols-2 gap-4">
               <Image
                 src="/git1.png"
@@ -282,12 +307,16 @@ export function TimelineDemo() {
       title: "Video Insight Extractor",
       content: (
         <div id="vie">
-          <h2 className="font-bold">Intelligent Youtube Summarizer and chatbot <Link href={'/youtubeSummarizer'}><Button >EXPLORE</Button></Link></h2>
-          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
+          <h2 className="font-bold text-xl">Intelligent Youtube Summarizer and chatbot <Link href={'/youtubeSummarizer'}><Button >EXPLORE</Button></Link></h2>
+          
+          <p className="text-indigo-700 text-lg  font-bold mb-8 mt-3">
           Cut through hours of video content with LearnIQAI Video Insight Extractor. Instantly capture key takeaways and insights from any YouTube video, transforming it into an easy-to-digest summary in minutes.
-          </p>
-          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-8">
-          Transform long YouTube videos into bite-sized, digestible learning content.
+
+          <br />
+          <span className="font-normal text-justify text-black">                      Transform long YouTube videos into bite-sized, digestible learning content.
+
+          </span>
+          
           </p>
           <div className="grid grid-cols-2 gap-4">
             <Image
