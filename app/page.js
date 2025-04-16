@@ -70,7 +70,7 @@ export default function Home() {
       
 
           <li>
-            <a className="text-black font-bold text-xl transition hover:text-gray-500/75" href="https://framevr.io/learniqai-workspace"> 3D-Collaborative Workspace</a>
+            <a className="text-white font-bold text-xl bg-black p-2 rounded-md transition hover:text-gray-500/75" href="https://framevr.io/learniqai-workspace"> 3D-Collaborative Workspace</a>
           </li>
 
           <li>
