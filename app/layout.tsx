@@ -6,6 +6,8 @@ import Provider from "@/components/Provider"
 import { Toaster } from "sonner";
 // import LoadScript from "@/components/LoadScript";
 import { VoiceProvider } from '@/components/VoiceContext'
+import Script from 'next/script';
+
 
 
 export const metadata: Metadata = {
@@ -22,6 +24,22 @@ export default function RootLayout({
     <ClerkProvider>
       
     <html lang="en">
+    <head>
+    {/* <script src="https://cdn.botpress.cloud/webchat/v2.3/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2025/04/16/04/20250416044218-MS1G3FJ3.js"></script> */}
+<Script
+  src="https://cdn.botpress.cloud/webchat/v2.3/inject.js"
+  strategy="afterInteractive" // Ensures it loads after the initial hydration
+/>
+<Script
+  src="https://files.bpcontent.cloud/2025/04/16/04/20250416044218-MS1G3FJ3.js"
+  strategy="afterInteractive"
+/>
+
+</head>
+      
+  
+    
       <body
         
       > 
