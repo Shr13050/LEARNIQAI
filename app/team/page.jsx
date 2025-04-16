@@ -69,15 +69,15 @@ const TeamPage = () => {
               <div className="space-y-8">
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">About Me</h3>
-                  <p className="text-gray-700 leading-relaxed">
-                  Hi, I’m Shreya Anand, a Computer Science undergrad at NSUT with a CGPA of 9.08 and a strong academic foundation . I’ve interned at Siemens Energy as a Generative AI Intern and gained hands-on experience with cutting-edge LLM and vision models. My key projects include LearniQAI and SmartStockAI, combining AI, cloud, and full-stack development to build impactful solutions. I've secured top positions in prestigious hackathons by JPMorgan, Google, and Amdocs. From organizing Tech Week at NSUT to being IEEE EXECOMM and a Subhasha SPOC, I balance tech passion with leadership and teamwork.
+                  <p className="text-gray-700 leading-relaxed text-justify">
+                  Hi, I’m Shreya Anand, pursuing B.Tech Computer Science at NSUT with a CGPA of 9.08 and a strong academic foundation . I’ve interned at Siemens Energy as a Generative AI Intern and gained hands-on experience with cutting-edge LLM and vision models. My key projects include LearniQAI and SmartStockAI, combining AI, cloud, and full-stack development to build impactful solutions. I've secured top positions in prestigious hackathons by JPMorgan, Google, and Amdocs. From organizing Tech Week at NSUT to being IEEE EXECOMM and a Subhasha SPOC, I balance tech passion with leadership and teamwork.
                   </p>
                 </div>
                 
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">My Vision</h3>
                   <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg">
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-gray-700 leading-relaxed text-justify" >
                     I envision LEARNIQAI as a groundbreaking force in shaping the future of education—one that goes beyond textbooks and exams to nurture intelligence, curiosity, and purpose. In a world rapidly transformed by AI, LEARNIQAI will stand as a personalized mentor, adapting to every learner’s pace, style, and aspirations. My vision is to build a platform that democratizes high-quality education, bridges skill gaps at scale, and empowers students to become not just job-ready, but future-ready. As LEARNIQAI evolves, I see it growing into a global ecosystem—where AI enhances human potential, and learning becomes a lifelong, fulfilling journey.
                     </p>
                   </div>

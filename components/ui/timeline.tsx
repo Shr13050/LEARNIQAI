@@ -43,7 +43,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           <h2 className="text-lg md:text-4xl mb-4 text-primary font-bold dark:text-white max-w-4xl">
             Define your learning journey with these tools
           </h2>
-          <p className=" text-xl max-w-sm bg-gradient-to-r from-purple-400 via-purple-600 to-indigo-500 bg-clip-text text-transparent font-bold">            LEARNIQAI is your all-in-one AI-powered learning
+          <p className=" text-xl max-w-sm bg-gradient-to-r from-purple-400 via-purple-600 to-indigo-500 bg-clip-text text-transparent font-bold text-justify">            LEARNIQAI is your all-in-one AI-powered learning
             companion—transforming PDFs into interactive tutors, summarizing
             complex content, optimizing resumes, and streamlining study plans.
             Learn smarter, faster, and more effectively!

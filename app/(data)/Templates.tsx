@@ -73,6 +73,58 @@ export default [
     ],
   },
   {
+    name: "PowerPoint Context Generator",
+    desc: "An AI tool that creates a powerPoint Context for slides",
+    category: "Productivity",
+    icon: "/ppt.png",
+    aiprompt:
+      "Create high quality 10 powerpoint slides content based on the content provided by the user .",
+    slug: "generate-ppt-context",
+    form: [
+      {
+        label: "Enter topic to create PowerPoint ,provide Brief description and content ",
+        field: "input",
+        name: "topic",
+        required: true,
+      },
+    ],
+  },
+
+  {
+    name: "Cover Letter Generator",
+    desc: "An AI tool that creates a Cover Letter.",
+    category: "Productivity",
+    icon: "/cl.jpg",
+    aiprompt:
+      "Create a high quality professional Cover Letter based on the content provided by the user .",
+    slug: "generate-coverletter-draft",
+    form: [
+      {
+        label: "Enter a brief description of your background along with your contact details, job title, work experience, and key skills to generate your personalized cover letter. ",
+        field: "input",
+        name: "topic",
+        required: true,
+      },
+    ],
+  },
+  {
+    name: "Code Debugger",
+    desc: "An AI tool that debugs your code and help you with all optimizations , errors and best methods",
+    category: "Productivity",
+    icon: "/cd.jpg",
+    aiprompt:
+      "Find bugs, suggest optimizations, and share best practices.give clean, efficient, and error-free code instantly.",
+    slug: "debug-code-instantly",
+    form: [
+      {
+        label: "Enter your code for debugging and suggestion ",
+        field: "input",
+        name: "topic",
+        required: true,
+      },
+    ],
+  },
+  {
     name: "Math Problem Solver",
     desc: "An AI tool to solve math problems and provide step-by-step solutions.",
     category: "Learning",
